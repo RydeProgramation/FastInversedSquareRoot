@@ -45,7 +45,7 @@ int main()
 	{
 		vec.clear();
 
-		for (int i = 0; i < 100000001; i++)
+		for (int i = 0; i < 100000000; i++)
 		{
 			vec.emplace_back(rand_int());//
 		}
@@ -60,7 +60,8 @@ int main()
 		end = chrono::steady_clock::now();
 		duration = chrono::duration_cast<chrono::nanoseconds>(end - begin);
 
-		cout << "MOYENNE 1 : " << duration.count() / 100000000 << " ns" << endl;
+		cout << "TEMPS 1 : " << duration.count() << " ns" << endl;
+		cout << "MOYENNE 1 : " << duration.count() / 100000000. << " ns" << endl;
 
 		begin = chrono::steady_clock::now();
 
@@ -72,7 +73,8 @@ int main()
 		end = chrono::steady_clock::now();
 		duration = chrono::duration_cast<chrono::nanoseconds>(end - begin);
 
-		cout << "MOYENNE 2 : " << duration.count() / 100000000 << " ns" << endl;
+		cout << "TEMPS 2 : " << duration.count() << " ns" << endl;
+		cout << "MOYENNE 2 : " << duration.count() / 100000000. << " ns" << endl;
 
 		cout << endl;
 	}
