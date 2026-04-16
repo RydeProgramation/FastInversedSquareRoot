@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="FastSquareRoot.vcxproj" Id="b63d4507-39f7-4e7d-b030-4bfb22cb213e" />
+</Solution>
