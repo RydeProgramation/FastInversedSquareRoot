@@ -24,7 +24,7 @@ float FastSquareRoot_I(float number)
 {
 	uint32_t* number_I = reinterpret_cast<uint32_t*>(&number);
 
-	*number_I = 1598029824 - (*number_I >> 1);
+	*number_I = 0x5f3759df - (*number_I >> 1);
 
 	return number;
 }
@@ -34,12 +34,39 @@ int main()
 {
 	chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 
-	int temp;
+	double temp;
 
 	chrono::steady_clock::time_point end = chrono::steady_clock::now();
 	auto duration = chrono::duration_cast<chrono::nanoseconds>(end - begin);
 
 	vector<int> vec;
+	vec.reserve(100000000);
+	temp = 1 / FastSquareRoot_I(43675802364.f) - sqrt(43675802364.f);
+	cout << "Premier : " << 1 / FastSquareRoot_I(43675802364.f) << " Deuxieme : " << sqrt(43675802364.f) << endl;
+	cout << "Erreur : " << temp << endl;
+
+	while (true)
+	{
+		vec.clear();
+		temp = 0;
+
+		for (int i = 0; i < 100000000; i++)
+		{
+			vec.emplace_back(rand_int());//
+		}
+
+		begin = chrono::steady_clock::now();
+
+		for (int i = 0; i < 100000000; i++)
+		{
+			temp += (1 / FastSquareRoot_I(vec[i]) - sqrt(vec[i])) / 100000000;
+		}
+
+		end = chrono::steady_clock::now();
+		duration = chrono::duration_cast<chrono::nanoseconds>(end - begin);
+
+		cout << "Erreur Moyenne 1 : " << temp << endl;
+	}
 
 	while (true)
 	{
@@ -67,7 +94,7 @@ int main()
 
 		for (int i = 0; i < 100000000; i++)
 		{
-			temp = sqrt(vec[i]);
+			temp = 1/sqrt(vec[i]);
 		}
 
 		end = chrono::steady_clock::now();
